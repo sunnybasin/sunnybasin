@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sunnybasin</title>
+<meta name="description" content="sunnybasin: composer, violinist, animator, dev and runner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon1.ico" type="image/x-icon">
+<style>
+:root{--bg:#f3ecd2;--panel:#fffdf3;--alt:#fff8dc;--line:rgba(20,18,10,.16);--text:#211d10;--body:#3a331d;--muted:#7a6f4a;--y:#ffcf49;--yd:#f0b400;--o:#ff9142;--ink:#1c1707;--dot:28,23,7;--sc:#e9dcb2}
+:root[data-theme=dark]{--bg:#17140a;--panel:#221d0e;--alt:#2c2613;--line:rgba(255,240,190,.18);--text:#f6efd4;--body:#d9d0aa;--muted:#a69b6c;--ink:#0d0b04;--dot:255,236,170;--sc:#2c2613}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;scrollbar-color:var(--yd) var(--sc)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 "Space Grotesk",system-ui,sans-serif;cursor:url(assets/01-0a33e891.png) 2 2,auto;transition:background .3s}
+a,button,.pick{cursor:url(assets/01-0a33e891.png) 2 2,pointer}
+::-webkit-scrollbar{width:16px}::-webkit-scrollbar-track{background:var(--sc)}::-webkit-scrollbar-thumb{background:var(--yd);border:2px solid var(--ink)}
+:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+#dots{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,nav,footer{position:relative;z-index:1}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.px{font-family:"Pixelify Sans",monospace}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(6px);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;align-items:center;gap:8px;height:60px}
+.logo{font:700 22px "Pixelify Sans",monospace;color:var(--yd);-webkit-text-stroke:1px var(--ink);text-shadow:2px 2px 0 var(--ink);text-decoration:none;margin-right:auto}
+nav a.l{font:700 14px "Pixelify Sans",monospace;color:var(--text);text-decoration:none;padding:7px 12px;border:2px solid transparent}
+nav a.l:hover{background:var(--alt);border-color:var(--ink)}
+nav a.l.on{background:var(--y);border-color:var(--ink);color:#1c1707}
+.tbtn{font:700 14px "Pixelify Sans",monospace;width:38px;height:34px;border:2px solid var(--ink);background:var(--alt);color:var(--text)}
+.tbtn:hover{background:var(--y);color:#1c1707}
+#burger{display:none}
+#prog{position:absolute;left:0;bottom:-3px;height:3px;width:0;background:var(--o)}
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+#avatar{width:170px;image-rendering:pixelated;filter:drop-shadow(0 8px 0 rgba(0,0,0,.14));transition:transform .2s;border:0;background:none;padding:0}
+#avatar:hover{transform:rotate(-6deg) scale(1.06)}
+#avatar:active{transform:scale(.92)}
+h1{margin:0;font:700 clamp(48px,10vw,96px)/1 "Pixelify Sans",serif;color:var(--yd);-webkit-text-stroke:2px var(--ink);text-shadow:4px 4px 0 var(--ink),7px 7px 0 rgba(0,0,0,.12);letter-spacing:1px}
+.type{margin:18px 0 0;font:500 clamp(18px,3vw,26px) "Pixelify Sans",monospace;min-height:1.6em}
+.type::after{content:"";display:inline-block;width:10px;height:1em;background:var(--o);margin-left:4px;vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{font:700 14px "Pixelify Sans",monospace;color:#1c1707;background:var(--y);border:2px solid var(--ink);padding:11px 18px;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .1s,box-shadow .1s;display:inline-block}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.s{background:var(--alt);color:var(--text)}
+/* sections */
+section{padding:64px 0;border-top:3px solid var(--ink);background:var(--panel)}
+section:nth-of-type(even){background:var(--alt)}
+h2{margin:0 0 28px;font:700 30px "Pixelify Sans",monospace;display:flex;align-items:center;gap:12px}
+h2::before{content:"";width:14px;height:14px;background:var(--yd);box-shadow:3px 3px 0 var(--ink)}
+.box{border:2px solid var(--ink);background:var(--panel);box-shadow:6px 6px 0 var(--ink)}
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
+.about p{margin:0 0 16px;color:var(--body);max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.chip{font:500 14px "Pixelify Sans",monospace;border:2px solid var(--ink);background:var(--alt);color:var(--text);padding:5px 12px;transition:.15s}
+.chip:hover,.chip.on{background:var(--y);color:#1c1707;transform:translateY(-2px)}
+#chipnote{min-height:3.4em;font-size:15px;color:var(--muted)}
+.photo{padding:8px;text-align:center;transform:rotate(1.5deg);transition:transform .25s}
+.photo:hover{transform:rotate(0)}
+.photo img{width:100%;display:block}
+.photo small{display:block;margin-top:8px;font:500 13px "Pixelify Sans",monospace;color:var(--muted)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.stat{padding:22px;text-align:center}
+.stat b{display:block;font:700 54px/1 "Pixelify Sans",monospace;color:var(--yd);-webkit-text-stroke:1.5px var(--ink)}
+.stat span{font-size:15px;color:var(--muted)}
+.hob{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hob div{padding:20px}
+.hob h3{margin:0 0 6px;font:700 18px "Pixelify Sans",monospace}
+.hob p{margin:0;color:var(--body);font-size:15px}
+/* player */
+.songs{display:grid;gap:14px;max-width:640px}
+.song{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:14px 16px}
+.disc{width:54px;height:54px;border-radius:50%;border:2px solid var(--ink);background:radial-gradient(circle,var(--y) 0 22%,var(--ink) 23% 30%,#3a331d 31% 100%);position:relative;padding:0}
+.disc::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;background:var(--ink);border-radius:50%}
+.song.play .disc{animation:spin 2.4s linear infinite;background:radial-gradient(circle,var(--o) 0 22%,var(--ink) 23% 30%,#3a331d 31% 100%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.song b{display:block;font-weight:600;line-height:1.3}
+.song a{color:var(--muted);font-size:14px}
+.bar{height:10px;border:2px solid var(--ink);background:var(--panel);margin-top:8px;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--o)}
+.tm{font:500 12px "Pixelify Sans",monospace;color:var(--muted)}
+/* projects */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.tabs .chip{font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.th{aspect-ratio:16/10;border-bottom:2px solid var(--ink);background:var(--alt);display:grid;place-items:center;overflow:hidden;color:var(--muted);font:500 13px "Pixelify Sans",monospace;width:100%;padding:0;border-left:0;border-right:0;border-top:0}
+.th img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+button.th:hover img{transform:scale(1.08)}
+.cb{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font:500 11px "Pixelify Sans",monospace;background:var(--y);color:#1c1707;border:1px solid var(--ink);padding:1px 8px;width:max-content}
+.tag.past{background:var(--alt);color:var(--text)}
+.cb h3{margin:0;font-size:18px}.cb p{margin:0;font-size:14px;color:var(--body);flex:1}
+.cb a,.rm{font-size:14px;font-weight:700;color:var(--yd);border:0;border-bottom:1px solid var(--yd);background:none;text-decoration:none;width:max-content;padding:0}
+.rm{color:var(--muted);border-color:var(--line);font:500 12px "Pixelify Sans",monospace}
+.empty{grid-column:1/-1;border:2px dashed var(--line);padding:28px;text-align:center;color:var(--muted)}
+#edit{margin-top:40px;padding:24px;display:none;max-width:520px}
+#edit.on{display:block}
+#edit label{display:block;font:500 13px "Pixelify Sans",monospace;color:var(--muted);margin-top:12px}
+#edit input[type=text],#edit input[type=url],#edit textarea{width:100%;font:15px "Space Grotesk",sans-serif;padding:9px 11px;border:2px solid var(--ink);background:var(--panel);color:var(--text)}
+#edit .btn{margin:16px 10px 0 0}
+/* pop-up */
+#lb{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:24px;background:rgba(20,17,7,.75);opacity:0;visibility:hidden;transition:.2s}
+#lb.on{opacity:1;visibility:visible}
+#lb .box{position:relative;max-width:580px;width:100%;max-height:90vh;overflow:auto;padding:18px}
+#lb img{width:100%;max-height:55vh;object-fit:contain;border:2px solid var(--ink);background:var(--alt);margin-bottom:12px}
+#lb h3{margin:0 0 6px;font-size:20px}#lb p{margin:0 0 14px;color:var(--body)}
+.x{position:absolute;top:10px;right:10px;width:34px;height:34px;border:2px solid var(--ink);background:var(--y);color:#1c1707;font-size:20px}
+.nv{display:flex;gap:10px;justify-content:space-between;align-items:center}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.handle{font:700 clamp(22px,4vw,30px) "Pixelify Sans",monospace;color:var(--yd);border:2px solid var(--ink);background:var(--panel);padding:12px 20px;box-shadow:5px 5px 0 var(--ink);display:inline-block}
+.handle:hover{background:var(--y);color:#1c1707}
+.links{display:flex;gap:14px;margin-top:26px}
+.ib{position:relative;width:54px;height:54px;border:2px solid var(--ink);background:var(--panel);display:grid;place-items:center;color:var(--text);transition:.15s}
+.ib:hover,.ib:focus-visible{background:var(--y);color:#1c1707;transform:translateY(-3px)}
+.ib svg{width:24px;height:24px}
+.tip{position:absolute;bottom:calc(100% + 10px);left:0;width:max-content;max-width:230px;padding:8px 12px;background:var(--ink);color:#fdf6de;font-size:12px;line-height:1.4;opacity:0;visibility:hidden;transition:.15s;pointer-events:none}
+.tip b{display:block;color:var(--y);font-size:13px}
+.ib:hover .tip,.ib:focus-visible .tip{opacity:1;visibility:visible}
+.contact img{width:190px;image-rendering:pixelated}
+footer{padding:26px 0 40px;text-align:center;font:500 13px "Pixelify Sans",monospace;color:var(--muted);border-top:3px solid var(--ink);background:var(--panel)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:var(--ink);color:#fdf6de;font:500 14px "Pixelify Sans",monospace;padding:10px 18px;border:2px solid var(--y);opacity:0;transition:.25s;z-index:60;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#top{position:fixed;right:20px;bottom:24px;z-index:15;width:46px;height:46px;border:2px solid var(--ink);background:var(--y);color:#1c1707;font-size:20px;box-shadow:4px 4px 0 var(--ink);transform:translateY(90px);transition:transform .25s}
+#top.on{transform:none}
+@keyframes shake{20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-4px)}60%{transform:translate(-5px,5px)}80%{transform:translate(4px,-3px)}}
+body.shaking main{animation:shake .8s ease}
+.rv{opacity:0;transform:translateY(18px);transition:.5s}.rv.in{opacity:1;transform:none}
+@media(max-width:760px){
+#burger{display:block}
+nav .links2{display:none;position:absolute;top:57px;left:0;right:0;background:var(--panel);border-bottom:3px solid var(--ink);padding:10px 24px;flex-direction:column}
+nav .links2.open{display:flex}
+.hero .wrap,.about,.contact,.stats,.hob{grid-template-columns:1fr}
+#avatar{width:120px}.contact img{width:130px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="dots"></canvas>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top-of-page">sunnybasin</a>
+    <div class="links2" id="menu" style="display:contents">
+      <a class="l" href="#about">about</a><a class="l" href="#music">music</a><a class="l" href="#projects">projects</a><a class="l" href="#contact">contact</a>
+    </div>
+    <button class="tbtn" id="theme" aria-label="Toggle dark mode">☾</button>
+    <button class="tbtn" id="burger" aria-label="Menu">≡</button>
+  </div>
+  <div id="prog"></div>
+</nav>
+
+<main id="top-of-page">
+<header class="hero">
+  <div class="wrap">
+    <button id="avatar" aria-label="Poke the avatar"><img src="assets/02-53de2ebc.png" alt="pixel art avatar" width="170" style="width:100%;display:block"></button>
+    <div>
+      <h1>sunnybasin</h1>
+      <p class="type" id="type" aria-live="off"></p>
+      <div class="cta"><a class="btn" href="#projects">see projects</a><a class="btn s" href="#music">hear music</a></div>
+    </div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap">
+  <h2 class="rv">About me</h2>
+  <div class="about rv">
+    <div>
+      <p>i'm a composer, violinist, animator, dev, builder, modeler, programmer/coder, and cross country runner.</p>
+      <p>occasionally i volunteer for community work and game projects. asian and some other stuff.</p>
+      <div class="chips" id="chips" role="group" aria-label="Things I do (tap one)"></div>
+      <p id="chipnote">tap a chip to see more.</p>
+    </div>
+    <figure class="box photo" style="margin:0"><img src="assets/06-e08f5042.jpg" alt="me wearing a respirator mask"><small>(me btw)</small></figure>
+  </div>
+  <div class="stats" style="margin-top:56px">
+    <div class="box stat rv"><b data-to="11" data-plus="+">0</b><span>years playing music</span></div>
+    <div class="box stat rv"><b data-to="2">0</b><span>instruments: piano, then violin</span></div>
+    <div class="box stat rv"><b data-to="4">0</b><span>projects in progress</span></div>
+  </div>
+  <div class="hob">
+    <div class="box rv"><h3>music</h3><p>i started on the piano and moved to the violin.</p></div>
+    <div class="box rv"><h3>running</h3><p>i admit i'm not that good at it, but i love it.</p></div>
+    <div class="box rv"><h3>tinkering</h3><p>i like tinkering a lot. <img src="assets/07-96f7d783.png" alt="" style="width:46px;image-rendering:pixelated;vertical-align:middle"></p></div>
+  </div>
+</div></section>
+
+<section id="music"><div class="wrap">
+  <h2 class="rv">Favourite songs</h2>
+  <div class="songs" id="songs"></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2 class="rv">Projects</h2>
+  <div class="rv" style="display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;margin-bottom:36px">
+    <button class="box" id="proto" aria-label="Poke the protogen" style="padding:10px;background:var(--panel);border-width:2px"><img id="protoimg" src="assets/08-b3eeb421.png" alt="pixel art protogen character" style="width:100%;image-rendering:pixelated;display:block"></button>
+    <p style="margin:0;color:var(--body)">click the protogen. it gets excited.<br>filter the list below, or open a project for the full picture.</p>
+  </div>
+  <audio id="sfx" src="assets/09-4fc926e7.mp3" preload="none"></audio>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="grid" id="grid"><p class="empty">loading projects…</p></div>
+  <form class="box" id="edit">
+    <h3 class="px" style="margin:0">add a project</h3>
+    <label for="pt">title</label><input type="text" id="pt" required>
+    <label for="pl">link (optional)</label><input type="url" id="pl">
+    <label for="pd">description</label><textarea id="pd"></textarea>
+    <label for="pi">picture (optional)</label><input type="file" id="pi" accept="image/*">
+    <label>status</label>
+    <label style="display:inline;margin-right:14px"><input type="radio" name="st" value="current" checked> current</label>
+    <label style="display:inline"><input type="radio" name="st" value="past"> past</label><br>
+    <button class="btn" type="submit">add project</button><button class="btn s" type="button" id="dl">download projects.json</button>
+    <p style="font-size:13px;color:var(--muted)">edits stay in this browser. download the file and replace projects.json on the site to publish.</p>
+  </form>
+</div></section>
+
+<section id="contact"><div class="wrap contact">
+  <div class="rv">
+    <h2>Say hi</h2>
+    <p style="margin:0 0 18px;color:var(--body)">need to talk? dm me on discord.</p>
+    <button class="handle" id="copy" aria-label="Copy Discord handle">@sunnybasin</button>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted)">click to copy</p>
+    <p class="px" style="margin:26px 0 0;color:var(--muted);font-size:14px">links (i don't upload as much anymore)</p>
+    <div class="links">
+      <a class="ib" href="https://www.youtube.com/@sunnybv3" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z" fill="currentColor" stroke="none"/></svg><span class="tip"><b>sunnyv3 on YouTube</b>making music for fun, classical/orchestral</span></a>
+      <a class="ib" href="https://sunnyv3.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span class="tip"><b>sunnyv3 on Bandcamp</b>Lisbon, Portugal. making music for fun</span></a>
+    </div>
+  </div>
+  <img class="rv" src="assets/10-1539eff3.png" alt="confused pixel character" id="conf">
+</div></section>
+</main>
+
+<footer>sunnybasin · updated 2026</footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Project details"><div class="box">
+  <button class="x" id="lbx" aria-label="Close">×</button>
+  <img id="lbi" alt=""><h3 id="lbt"></h3><p id="lbd"></p>
+  <div class="nv"><button class="btn s" id="lbp" aria-label="Previous">‹ prev</button><a class="btn" id="lbv" target="_blank" rel="noopener">visit</a><button class="btn s" id="lbn" aria-label="Next">next ›</button></div>
+</div></div>
+<div id="toast" role="status"></div>
+<button id="top" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('on')},1800)}
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+
+/* theme */
+var root=document.documentElement,tb=$('#theme');
+function setTheme(t){root.dataset.theme=t;tb.textContent=t==='dark'?'☀':'☾';try{localStorage.setItem('sb-theme',t)}catch(e){}}
+var saved;try{saved=localStorage.getItem('sb-theme')}catch(e){}
+setTheme(saved||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+tb.onclick=function(){setTheme(root.dataset.theme==='dark'?'light':'dark')};
+
+/* dots that dodge the cursor */
+var cv=$('#dots'),cx=cv.getContext('2d'),W,H,mx=-999,my=-999,sp=26;
+function rs(){var d=devicePixelRatio||1;W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+rs();addEventListener('resize',rs);
+addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY});
+function draw(t){
+  cx.clearRect(0,0,W,H);var c=getComputedStyle(root).getPropertyValue('--dot').trim();
+  for(var y=0;y<H+sp;y+=sp)for(var x=0;x<W+sp;x+=sp){
+    var w=Math.sin(x*.018+y*.018+t),dx=x-mx,dy=y-my,d=Math.sqrt(dx*dx+dy*dy),px=x,py=y+w*4,r=Math.max(.25,1.3+w*1.1),a=.1+Math.abs(w)*.1;
+    if(d<120){var f=(1-d/120);px+=dx/d*f*18;py+=dy/d*f*18;r+=f*2.5;a+=f*.3}
+    cx.beginPath();cx.arc(px,py,r,0,6.283);cx.fillStyle='rgba('+c+','+a+')';cx.fill()}
+}
+if(reduce)draw(0);else(function L(ts){draw(ts*.0015);requestAnimationFrame(L)})(0);
+
+/* typewriter */
+var roles=['composer','violinist','animator','dev','builder','modeler','cross country runner'],ri=0,ci=0,del=false,tp=$('#type');
+if(reduce)tp.textContent='maker, coder, composer';else(function T(){
+  var w=roles[ri];ci+=del?-1:1;tp.textContent=w.slice(0,ci);
+  var wait=del?40:90;if(!del&&ci===w.length){del=true;wait=1200}else if(del&&ci===0){del=false;ri=(ri+1)%roles.length;wait=300}
+  setTimeout(T,wait)})();
+
+/* nav: scrollspy, progress, menu, back to top */
+var links=$$('nav a.l'),secs=links.map(function(a){return $(a.getAttribute('href'))});
+function onScroll(){
+  var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;$('#prog').style.width=(h?y/h*100:0)+'%';
+  $('#top').classList.toggle('on',y>500);var cur=-1;
+  secs.forEach(function(s,i){if(s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+  links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+$('#top').onclick=function(){scrollTo({top:0})};
+$('#burger').onclick=function(){var m=$('#menu');if(innerWidth<=760){m.style.display=m.classList.toggle('open')?'flex':'none'}};
+links.forEach(function(a){a.addEventListener('click',function(){if(innerWidth<=760)$('#menu').style.display='none'})});
+function fixMenu(){var m=$('#menu');m.classList.remove('open');m.style.display=innerWidth<=760?'none':'contents'}
+fixMenu();addEventListener('resize',fixMenu);
+
+/* reveal + counters */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);
+  var n=e.target.querySelector('[data-to]');if(n){var to=+n.dataset.to,s=0,p=n.dataset.plus||'';(function C(){s+=Math.max(1,to/30);if(s>=to){n.textContent=to+p}else{n.textContent=Math.floor(s);requestAnimationFrame(C)}})()}})},{threshold:.2});
+$$('.rv').forEach(function(e){io.observe(e)});
+
+/* about chips */
+var facts={composer:'orchestral and classical, mostly. the music lives on YouTube and Bandcamp.',violinist:'11+ years of playing, starting on piano before moving to violin.',animator:'currently animating with ragdolls for an anniversary project.',dev:'protogen os lite is open source on GitHub.',builder:'sticker-wrapped shotgun build, protogen hardware, and more.',modeler:'3D models for games and community projects.',runner:'cross country. not fast, but never skips a run.'};
+var cw=$('#chips');Object.keys(facts).forEach(function(k){var b=document.createElement('button');b.className='chip';b.textContent=k;b.onclick=function(){$$('#chips .chip').forEach(function(c){c.classList.remove('on')});b.classList.add('on');$('#chipnote').textContent=facts[k]};cw.appendChild(b)});
+
+/* music player */
+var songs=[['Sober Song','Thắng','https://www.youtube.com/channel/UC0BN9N2jPRI_1_SjhXxnQ2g','assets/03-ba19ffb3.mp3'],['Hay Là','Ngọt','https://www.youtube.com/channel/UCuKWFCkVDNzcFy5JGeJFrOw','assets/04-b45cf704.mp3'],['Cho Tôi Đi Theo','Ngọt','https://www.youtube.com/channel/UCuKWFCkVDNzcFy5JGeJFrOw','assets/05-f897dcc1.mp3']];
+function fmt(s){if(!isFinite(s))return'0:00';return Math.floor(s/60)+':'+('0'+Math.floor(s%60)).slice(-2)}
+var auds=[];
+songs.forEach(function(s){
+  var el=document.createElement('div');el.className='box song';
+  el.innerHTML='<button class="disc" aria-label="Play '+s[0]+'"></button><div><b>'+s[0]+'</b><a href="'+s[2]+'" target="_blank" rel="noopener">'+s[1]+'</a><div class="bar" role="slider" aria-label="Seek" tabindex="0"><i></i></div><span class="tm">0:00 / 0:00</span></div><audio preload="none" src="'+s[3]+'"></audio>';
+  var a=el.querySelector('audio'),f=el.querySelector('i'),bar=el.querySelector('.bar'),tm=el.querySelector('.tm');auds.push(a);
+  el.querySelector('.disc').onclick=function(){if(a.paused){auds.forEach(function(o){o.pause()});a.play()}else a.pause()};
+  a.onplay=function(){el.classList.add('play')};a.onpause=a.onended=function(){el.classList.remove('play')};
+  a.onended=function(){el.classList.remove('play');var n=auds[(auds.indexOf(a)+1)%auds.length];if(n!==a)n.play()};
+  a.ontimeupdate=a.onloadedmetadata=function(){f.style.width=(a.duration?a.currentTime/a.duration*100:0)+'%';tm.textContent=fmt(a.currentTime)+' / '+fmt(a.duration)};
+  function seek(p){if(a.duration)a.currentTime=Math.max(0,Math.min(1,p))*a.duration}
+  bar.onclick=function(e){var r=bar.getBoundingClientRect();if(a.paused)a.load&&0;seek((e.clientX-r.left)/r.width)};
+  bar.onkeydown=function(e){if(e.key==='ArrowRight')a.currentTime+=5;if(e.key==='ArrowLeft')a.currentTime-=5};
+  $('#songs').appendChild(el)});
+
+/* protogen */
+var pi=$('#protoimg'),idle=pi.src,sfx=$('#sfx'),ptm;
+$('#proto').onclick=function(){pi.src='assets/11-9c727604.png';sfx.currentTime=0;sfx.play().catch(function(){});
+  document.body.classList.remove('shaking');void document.body.offsetWidth;document.body.classList.add('shaking');
+  clearTimeout(ptm);ptm=setTimeout(function(){pi.src=idle;document.body.classList.remove('shaking')},900)};
+$('#avatar').onclick=function(){var i=$('#avatar img');i.animate([{transform:'translateY(0)'},{transform:'translateY(-26px)'},{transform:'translateY(0)'}],{duration:350});toast(['hi!','ow','stop poking me','...','hello again'][Math.floor(Math.random()*5)])};
+$('#conf').onclick=function(){toast('i am also confused')};
+
+/* contact */
+$('#copy').onclick=function(){var t='sunnybasin';(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast('copied "'+t+'" to clipboard')},function(){toast('discord: '+t)})};
+
+/* projects */
+var KEY='sunnybasin_projects_draft',P=[],filter='all',edit=location.hash==='#edit',shown=[];
+function load(){return fetch('projects.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}}
+function render(){
+  var tabs=$('#tabs');tabs.innerHTML='';
+  [['all','all'],['current','working on now'],['past','past']].forEach(function(t){var n=P.filter(function(p){return t[0]==='all'||(p.status==='past'?'past':'current')===t[0]}).length,b=document.createElement('button');
+    b.className='chip'+(filter===t[0]?' on':'');b.setAttribute('role','tab');b.setAttribute('aria-selected',filter===t[0]);b.textContent=t[1]+' ('+n+')';b.onclick=function(){filter=t[0];render()};tabs.appendChild(b)});
+  shown=[];P.forEach(function(p,i){if(filter==='all'||(p.status==='past'?'past':'current')===filter)shown.push(i)});
+  var g=$('#grid');
+  if(!P.length){g.innerHTML='<p class="empty">couldn\'t load projects.json. if you opened this file straight from disk, run it through a local server or the live site.</p>';return}
+  g.innerHTML=shown.length?shown.map(function(i,k){var p=P[i];
+    return '<article class="box card"><'+(p.image?'button class="th" data-k="'+k+'" aria-label="Open '+esc(p.title)+'"><img loading="lazy" src="'+p.image+'" alt="">':'div class="th">no image')+'</'+(p.image?'button':'div')+'><div class="cb"><span class="tag '+(p.status==='past'?'past':'')+'">'+(p.status==='past'?'past':'current')+'</span><h3>'+esc(p.title)+'</h3><p>'+esc(p.desc)+'</p>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">visit</a>':'')+(edit?'<button class="rm" data-i="'+i+'">remove</button>':'')+'</div></article>'}).join(''):'<p class="empty">nothing here yet. try another tab.</p>'}
+var cur=0;
+function open(k){cur=(k+shown.length)%shown.length;var p=P[shown[cur]];$('#lbi').src=p.image||'';$('#lbi').style.display=p.image?'':'none';$('#lbt').textContent=p.title;$('#lbd').textContent=p.desc||'';var v=$('#lbv');if(p.link){v.href=p.link;v.style.display=''}else v.style.display='none';
+  $('#lb').classList.add('on');document.body.style.overflow='hidden';$('#lbx').focus()}
+function close(){$('#lb').classList.remove('on');document.body.style.overflow=''}
+$('#grid').addEventListener('click',function(e){var t=e.target.closest('.th[data-k]');if(t)open(+t.dataset.k);var r=e.target.closest('.rm');if(r){P.splice(+r.dataset.i,1);save();render()}});
+$('#lbx').onclick=close;$('#lb').onclick=function(e){if(e.target.id==='lb')close()};
+$('#lbp').onclick=function(){open(cur-1)};$('#lbn').onclick=function(){open(cur+1)};
+addEventListener('keydown',function(e){if(!$('#lb').classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')open(cur-1);if(e.key==='ArrowRight')open(cur+1)});
+var draft=null;if(edit){$('#edit').classList.add('on');try{draft=JSON.parse(localStorage.getItem(KEY))}catch(e){}}
+(draft?Promise.resolve(draft):load()).then(function(l){P=l||[];render()});
+$('#dl').onclick=function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(P,null,2)],{type:'application/json'}));a.download='projects.json';a.click()};
+function shrink(f,cb){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,700/im.width),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.85))};im.src=r.result};r.readAsDataURL(f)}
+$('#edit').onsubmit=function(e){e.preventDefault();var f=$('#pi').files[0];function add(img){P.unshift({title:$('#pt').value.trim(),link:$('#pl').value.trim(),desc:$('#pd').value.trim(),status:$('input[name=st]:checked').value,image:img||''});save();render();e.target.reset();toast('project added')}
+  f?shrink(f,add):add('')};
+})();
+</script>
+</body>
+</html>
