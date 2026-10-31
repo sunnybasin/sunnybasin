@@ -1,9 +1,4 @@
-/* ===== FAVOURITE SONGS =====
-   Add, remove or reorder songs by editing this list. One block per song:
-     title:  song name
-     artist: artist name
-     link:   artist's channel/page (click-through)
-     file:   audio file path (put new .mp3 files in the assets/ folder)
+
 */
 var SONGS = [
   {
