@@ -137,7 +137,7 @@ footer{padding:26px 0 40px;text-align:center;font:500 13px "Pixelify Sans",monos
 #top.on{transform:none}
 @keyframes shake{20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-4px)}60%{transform:translate(-5px,5px)}80%{transform:translate(4px,-3px)}}
 body.shaking main{animation:shake .8s ease}
-.rv{opacity:0;transform:translateY(18px);transition:.5s}.rv.in{opacity:1;transform:none}
+.rv{transition:.5s}.js .rv{opacity:0;transform:translateY(18px)}.js .rv.in{opacity:1;transform:none}
 @media(max-width:760px){
 #burger{display:block}
 nav .links2{display:none;position:absolute;top:57px;left:0;right:0;background:var(--panel);border-bottom:3px solid var(--ink);padding:10px 24px;flex-direction:column}
@@ -145,7 +145,7 @@ nav .links2.open{display:flex}
 .hero .wrap,.about,.contact,.stats,.hob,.proto-row{grid-template-columns:1fr}
 #avatar{width:120px}.contact img{width:130px}.proto-row #proto{max-width:200px}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
