@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sunnybasin · game</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon1.ico" type="image/x-icon">
+<style>
+:root{--bg:#f3ecd2;--panel:#fffdf3;--alt:#fff8dc;--text:#211d10;--body:#3a331d;--muted:#7a6f4a;--y:#ffcf49;--yd:#f0b400;--o:#ff9142;--ink:#1c1707}
+:root[data-theme=dark]{--bg:#17140a;--panel:#221d0e;--alt:#2c2613;--text:#f6efd4;--body:#d9d0aa;--muted:#a69b6c;--ink:#0d0b04}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px 16px;background:var(--bg);color:var(--text);font:400 17px/1.6 "Space Grotesk",system-ui,sans-serif;cursor:url(assets/01-0a33e891.png) 2 2,auto}
+a,button{cursor:url(assets/01-0a33e891.png) 2 2,pointer}
+:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+.card{width:100%;max-width:720px;background:var(--panel);border:3px solid var(--ink);border-radius:22px;box-shadow:10px 10px 0 var(--ink);padding:28px}
+h1{margin:0 0 6px;font:700 clamp(34px,7vw,52px)/1 "Pixelify Sans",serif;color:var(--yd);-webkit-text-stroke:2px var(--ink);text-shadow:3px 3px 0 var(--ink)}
+p{margin:0 0 14px;color:var(--body)}
+.how{margin:0 0 22px;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--body)}
+.how li{display:flex;align-items:center;gap:12px}
+.how li::before{content:"";width:8px;height:8px;background:var(--o);flex-shrink:0;box-shadow:2px 2px 0 var(--ink)}
+.box{border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden;line-height:0}
+#game{width:100%;height:auto;display:block;touch-action:none}
+.gbar{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:22px;font:500 16px "Pixelify Sans",monospace;color:var(--muted)}
+.btn{font:700 14px "Pixelify Sans",monospace;color:#1c1707;background:var(--y);border:2px solid var(--ink);padding:10px 18px;text-decoration:none;display:inline-block;box-shadow:4px 4px 0 var(--ink)}
+.btn:hover{background:var(--yd)}
+.back{margin-left:auto;background:var(--alt);color:var(--text)}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>game</h1>
+  <p>note catcher: music notes fall from the top of the screen. click or tap them before they hit the floor.</p>
+  <ul class="how">
+    <li>each note you catch is worth 1 point</li>
+    <li>gold stars are worth 3, and missing one costs nothing</li>
+    <li>missing a regular note costs a heart, and you start with 3</li>
+    <li>the notes fall faster the higher your score gets</li>
+    <li>your best score is saved in this browser</li>
+  </ul>
+  <div class="box"><canvas id="game" width="640" height="360" aria-label="Note catcher game"></canvas></div>
+  <div class="gbar"><button class="btn" id="gstart" type="button">start</button><span id="gscore">score 0</span><span id="gbest">best 0</span><a class="btn back" href="index.html">back to site</a></div>
+</div>
+<script>try{var t=localStorage.getItem('sb-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="game.js?v=2"></script>
+</body>
+</html>
