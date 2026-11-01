@@ -15,7 +15,7 @@
 <canvas id="dots"></canvas>
 <nav>
   <div class="wrap">
-    <a class="logo" href="index.html">sunnybasin</a>
+    <a class="logo" href="index.html"><img class="logo-img" src="assets/02-53de2ebc.png" alt="">sunnybasin</a>
     <div class="links2" id="menu" style="display:contents">
       <a class="l" href="index.html" data-p="about">about</a><a class="l" href="projects.html" data-p="projects">projects</a><a class="l on" href="contact.html" data-p="contact">contact</a>
     </div>
@@ -50,6 +50,20 @@
   </div>
   <img class="rv" src="assets/10-1539eff3.png" alt="confused pixel character" id="conf">
 </div></section>
+<section id="message"><div class="wrap">
+  <h2 class="rv">Send me a message</h2>
+  <form class="box mform rv" id="mform" novalidate>
+    <label for="mn">name (optional)</label>
+    <input id="mn" name="name" type="text" maxlength="60" autocomplete="name">
+    <label for="me">your email (optional, only if you want a reply)</label>
+    <input id="me" name="email" type="email" maxlength="120" autocomplete="email">
+    <label for="mm">message</label>
+    <textarea id="mm" name="message" rows="6" maxlength="2000" required></textarea>
+    <input type="text" name="website" id="mw" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+    <div class="mrow"><button class="btn" type="submit" id="msend">send</button><span id="mstatus" role="status"></span></div>
+  </form>
+</div></section>
+
 </main>
 
 <footer>sunnybasin · updated 2026 · <a href="disclaimer.html">disclaimer</a></footer>
@@ -58,6 +72,7 @@
 <button id="top" aria-label="Back to top">↑</button>
 <script src="songs.js?v=7"></script>
 <script src="chips.js?v=7"></script>
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
+<script src="interactables.js?v=9"></script>
 </body>
 </html>
