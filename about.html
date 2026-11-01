@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sunnybasin</title>
+<meta name="description" content="sunnybasin: composer, violinist, animator, dev and runner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon1.ico" type="image/x-icon">
+<link rel="stylesheet" href="style.css?v=10">
+</head>
+<body data-page="about">
+<canvas id="dots"></canvas>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="index.html"><img class="logo-img" src="assets/02-53de2ebc.png" alt="">sunnybasin</a>
+    <div class="links2" id="menu" style="display:contents">
+      <a class="l on" href="about.html" data-p="about">about</a><a class="l" href="projects.html" data-p="projects">projects</a><a class="l" href="contact.html" data-p="contact">contact</a>
+    </div>
+    <button class="tbtn" id="theme" aria-label="Toggle dark mode">☾</button>
+    <button class="tbtn" id="burger" aria-label="Menu">≡</button>
+  </div>
+  <div id="prog"></div>
+</nav>
+
+<main id="top-of-page">
+<header class="hero">
+  <div class="wrap">
+    <button id="avatar" aria-label="Poke the avatar"><img src="assets/02-53de2ebc.png" alt="pixel art avatar" width="100" style="width:100%;display:block"></button>
+    <div>
+      <h1>sunnybasin</h1>
+      <p class="type" id="type" aria-live="off"></p>
+    </div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap">
+  <h2 class="rv">About me</h2>
+  <div class="about rv">
+    <div>
+      <p>i'm a composer, violinist, animator, dev, builder, modeler, programmer/coder, and cross country runner.</p>
+      <p>occasionally i volunteer for community work and game projects. asian and some other stuff.</p>
+      <ul class="list rv">
+        <li>playing music for lots of years, piano first, then violin</li>
+        <li>running, even though i'm not that good at it</li>
+        <li>tinkering a lot <img src="assets/07-96f7d783.png" alt="" style="width:40px;image-rendering:pixelated;vertical-align:middle"></li>
+        <li>always building something</li>
+      </ul>
+      <h3 class="sub-h" id="music" style="margin:34px 0 0;font-size:20px">Favourite songs</h3>
+      <ul class="slist" id="songs"></ul>
+    </div>
+    <div class="side">
+    <figure class="box photo" style="margin:0"><img src="assets/06-e08f5042.jpg" alt="me wearing a respirator mask"><small>(me btw)</small></figure>
+    <div class="chips" id="chips" role="group" aria-label="Things I do (tap one)"></div>
+    <p id="chipnote">tap a chip to see more.</p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer>sunnybasin · updated 2026 · <a href="disclaimer.html">disclaimer</a></footer>
+
+<div id="toast" role="status"></div>
+<button id="top" aria-label="Back to top">↑</button>
+<script src="songs.js?v=10"></script>
+<script src="chips.js?v=10"></script>
+<script src="script.js?v=10"></script>
+<script src="interactables.js?v=10"></script>
+</body>
+</html>

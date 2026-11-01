@@ -19,6 +19,10 @@ var INTERACT = {
      2) formspree: paste your form link here, like "https://formspree.io/f/abcdwxyz"
         web3forms: use endpoint "https://api.web3forms.com/submit" and put your access key in extra: { access_key: "..." } */
   contactForm: {
+    /* captcha: paste your Google reCAPTCHA v2 ("I'm not a robot" checkbox) SITE key here.
+       also paste its SECRET key in your Formspree form settings (CAPTCHA > Custom reCAPTCHA) so Formspree checks it for real.
+       leave this blank to use a simple "what is a + b?" check instead. */
+    recaptchaSiteKey: "",
     endpoint: "https://formspree.io/f/xoeekgnk",
     extra: { _subject: "New message from my website" },
     subject: "New message from my website"
@@ -31,18 +35,33 @@ var $=function(s){return document.querySelector(s)},$$=function(s){return [].sli
 function toast(t){var e=$('#toast');if(!e)return;e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('on')},1800)}
 function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
 
+/* contact page: captcha (google recaptcha if a site key is set, otherwise a simple math check) */
+var cap={a:0,b:0,wid:null};
+function mathQ(){cap.a=2+Math.floor(Math.random()*8);cap.b=2+Math.floor(Math.random()*8);var q=$('#mcq');if(q){q.value='';$('#mcl').textContent='human check: what is '+cap.a+' + '+cap.b+'?'}}
+if($('#mcap')){
+  var key=INTERACT.contactForm.recaptchaSiteKey;
+  if(key){
+    window.sbCaptchaLoaded=function(){cap.wid=grecaptcha.render('mcap',{sitekey:key,theme:document.documentElement.dataset.theme==='dark'?'dark':'light'})};
+    var rs=document.createElement('script');rs.src='https://www.google.com/recaptcha/api.js?onload=sbCaptchaLoaded&render=explicit';rs.async=true;document.head.appendChild(rs)}
+  else{$('#mcap').innerHTML='<label id="mcl" for="mcq"></label><input id="mcq" type="text" inputmode="numeric" maxlength="3" autocomplete="off">';mathQ()}}
+
 /* contact page: message form */
 if($('#mform'))$('#mform').onsubmit=function(e){
   e.preventDefault();var f=this,st=$('#mstatus'),b=$('#msend'),C=INTERACT.contactForm,msg=$('#mm').value.trim();
   if(!msg){st.textContent='write a message first';return}
   if($('#mw').value){st.textContent='sent! thank you';f.reset();return}
   if(!C.endpoint){st.textContent="the form isn't connected yet (see interactables.js)";return}
+  var tok='';
+  if(C.recaptchaSiteKey){tok=window.grecaptcha&&grecaptcha.getResponse(cap.wid);if(!tok){st.textContent='please tick the captcha first';return}}
+  else if(parseInt($('#mcq').value,10)!==cap.a+cap.b){st.textContent="that answer isn't right, try again";mathQ();return}
   b.disabled=true;st.textContent='sending...';
   var body={name:$('#mn').value.trim(),email:$('#me').value.trim(),message:msg,subject:C.subject};
   for(var k in C.extra)body[k]=C.extra[k];
+  if(tok)body['g-recaptcha-response']=tok;
   fetch(C.endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
    .then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok||d.success===false||d.ok===false)throw 0})})
    .then(function(){st.textContent='sent! thank you';f.reset();toast('message sent')},function(){st.textContent='something went wrong, try again later'})
+   .then(function(){if(C.recaptchaSiteKey){if(window.grecaptcha)grecaptcha.reset(cap.wid)}else mathQ()})
    .then(function(){b.disabled=false})};
 
 /* the plushie: hops, says something, plays its sound */
@@ -62,18 +81,18 @@ if($('#chips')){
   if(typeof CHIPS==='undefined')$('#chipnote').textContent='chips.js not found next to index.html';
   else CHIPS.forEach(function(c){var b=document.createElement('button');b.className='chip';b.textContent=c.label;b.onclick=function(){$$('#chips .chip').forEach(function(x){x.classList.remove('on')});b.classList.add('on');$('#chipnote').textContent=c.text};$('#chips').appendChild(b)})}
 
-/* about page: songs (the list lives in songs.js) */
+/* about page: songs (the list lives in songs.js), shown as a bullet list with a tiny player */
 function fmt(s){if(!isFinite(s))return'0:00';return Math.floor(s/60)+':'+('0'+Math.floor(s%60)).slice(-2)}
 var auds=[];
 if($('#songs')){
-  if(typeof SONGS==='undefined')$('#songs').textContent='songs.js not found next to index.html';
+  if(typeof SONGS==='undefined')$('#songs').textContent='songs.js not found next to the page';
   else SONGS.forEach(function(s){
-    var el=document.createElement('div');el.className='box song';
-    el.innerHTML='<button class="disc" aria-label="Play '+esc(s.title)+'"></button><div><b>'+esc(s.title)+'</b><a href="'+esc(s.link)+'" target="_blank" rel="noopener">'+esc(s.artist)+'</a><div class="bar" role="slider" aria-label="Seek" tabindex="0"><i></i></div><span class="tm">0:00 / 0:00</span></div><audio preload="none" src="'+esc(s.file)+'"></audio>';
-    var a=el.querySelector('audio'),f=el.querySelector('i'),bar=el.querySelector('.bar'),tm=el.querySelector('.tm');auds.push(a);
-    el.querySelector('.disc').onclick=function(){if(a.paused){auds.forEach(function(o){o.pause()});a.play()}else a.pause()};
-    a.onplay=function(){el.classList.add('play')};a.onpause=function(){el.classList.remove('play')};
-    a.onended=function(){el.classList.remove('play');var n=auds[(auds.indexOf(a)+1)%auds.length];if(n!==a)n.play()};
+    var el=document.createElement('li');
+    el.innerHTML='<div class="sb"><b>'+esc(s.title)+'</b><a href="'+esc(s.link)+'" target="_blank" rel="noopener">'+esc(s.artist)+'</a><div class="prow"><button class="sp" aria-label="Play '+esc(s.title)+'">&#9654;</button><div class="bar" role="slider" aria-label="Seek" tabindex="0"><i></i></div><span class="tm">0:00 / 0:00</span></div></div><audio preload="none" src="'+esc(s.file)+'"></audio>';
+    var a=el.querySelector('audio'),f=el.querySelector('i'),bar=el.querySelector('.bar'),tm=el.querySelector('.tm'),sp=el.querySelector('.sp');auds.push(a);
+    sp.onclick=function(){if(a.paused){auds.forEach(function(o){o.pause()});a.play()}else a.pause()};
+    a.onplay=function(){el.classList.add('play');sp.innerHTML='&#10074;&#10074;'};a.onpause=function(){el.classList.remove('play');sp.innerHTML='&#9654;'};
+    a.onended=function(){a.onpause();var n=auds[(auds.indexOf(a)+1)%auds.length];if(n!==a)n.play()};
     a.ontimeupdate=a.onloadedmetadata=function(){f.style.width=(a.duration?a.currentTime/a.duration*100:0)+'%';tm.textContent=fmt(a.currentTime)+' / '+fmt(a.duration)};
     bar.onclick=function(e){var r=bar.getBoundingClientRect();if(a.duration)a.currentTime=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*a.duration};
     bar.onkeydown=function(e){if(e.key==='ArrowRight')a.currentTime+=5;if(e.key==='ArrowLeft')a.currentTime-=5};

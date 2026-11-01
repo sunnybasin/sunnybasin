@@ -9,15 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon1.ico" type="image/x-icon">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
-<body data-page="about">
+<body data-page="home">
 <canvas id="dots"></canvas>
 <nav>
   <div class="wrap">
     <a class="logo" href="index.html"><img class="logo-img" src="assets/02-53de2ebc.png" alt="">sunnybasin</a>
     <div class="links2" id="menu" style="display:contents">
-      <a class="l on" href="index.html" data-p="about">about</a><a class="l" href="projects.html" data-p="projects">projects</a><a class="l" href="contact.html" data-p="contact">contact</a>
+      <a class="l" href="about.html" data-p="about">about</a><a class="l" href="projects.html" data-p="projects">projects</a><a class="l" href="contact.html" data-p="contact">contact</a>
     </div>
     <button class="tbtn" id="theme" aria-label="Toggle dark mode">☾</button>
     <button class="tbtn" id="burger" aria-label="Menu">≡</button>
@@ -48,6 +48,8 @@
         <li>tinkering a lot <img src="assets/07-96f7d783.png" alt="" style="width:40px;image-rendering:pixelated;vertical-align:middle"></li>
         <li>always building something</li>
       </ul>
+      <h3 class="sub-h" id="music" style="margin:34px 0 0;font-size:20px">Favourite songs</h3>
+      <ul class="slist" id="songs"></ul>
     </div>
     <div class="side">
     <figure class="box photo" style="margin:0"><img src="assets/06-e08f5042.jpg" alt="me wearing a respirator mask"><small>(me btw)</small></figure>
@@ -55,18 +57,80 @@
     <p id="chipnote">tap a chip to see more.</p>
     </div>
   </div>
-  <h3 class="sub-h rv" id="music">Favourite songs</h3>
-  <div class="songs" id="songs"></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2 class="rv">Projects</h2>
+  <div class="proto-row rv">
+    <button class="box" id="proto" aria-label="Click the protogen"><img id="protoimg" src="assets/08-b3eeb421.png" alt="pixel art protogen character" style="width:100%;image-rendering:pixelated;display:block"></button>
+    <p class="click-me">click me</p>
+  </div>
+  <audio id="sfx" src="assets/09-4fc926e7.mp3" preload="none"></audio>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="grid" id="grid"><p class="empty">loading projects…</p></div>
+  <form class="box" id="edit">
+    <h3 class="px" style="margin:0">add a project</h3>
+    <label for="pt">title</label><input type="text" id="pt" required>
+    <label for="pl">link (optional)</label><input type="url" id="pl">
+    <label for="pd">description</label><textarea id="pd"></textarea>
+    <label for="pi">picture (optional)</label><input type="file" id="pi" accept="image/*">
+    <label>status</label>
+    <label style="display:inline;margin-right:14px"><input type="radio" name="st" value="current" checked> current</label>
+    <label style="display:inline"><input type="radio" name="st" value="past"> past</label><br>
+    <button class="btn" type="submit">add project</button><button class="btn s" type="button" id="dl">download projects.json</button>
+    <p style="font-size:13px;color:var(--muted)">edits stay in this browser. download the file and replace projects.json on the site to publish.</p>
+  </form>
+</div></section>
+
+<section id="contact"><div class="wrap contact">
+  <div class="rv">
+    <h2>Say hi</h2>
+    <p style="margin:0 0 18px;color:var(--body)">need to talk? dm me on discord.</p>
+    <button class="handle" id="copy" aria-label="Copy Discord handle">@sunnybasin</button>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted)">click to copy</p>
+    <p class="px" style="margin:26px 0 0;color:var(--muted);font-size:14px">links (i don't upload as much anymore)</p>
+    <div class="links">
+      <a class="ib" href="https://www.youtube.com/@sunnybv3" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z" fill="currentColor" stroke="none"/></svg><span class="tip"><b>sunnyv3 on YouTube</b>making music for fun, classical/orchestral</span></a>
+      <a class="ib" href="https://sunnyv3.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span class="tip"><b>sunnyv3 on Bandcamp</b>Lisbon, Portugal. making music for fun</span></a>
+    </div>
+  </div>
+  <img class="rv" src="assets/10-1539eff3.png" alt="confused pixel character" id="conf">
+</div></section>
+
+<section id="message"><div class="wrap">
+  <h2 class="rv">Send me a message</h2>
+  <form class="box mform rv" id="mform" novalidate>
+    <label for="mn">name (optional)</label>
+    <input id="mn" name="name" type="text" maxlength="60" autocomplete="name">
+    <label for="me">your email (optional, only if you want a reply)</label>
+    <input id="me" name="email" type="email" maxlength="120" autocomplete="email">
+    <label for="mm">message</label>
+    <textarea id="mm" name="message" rows="6" maxlength="2000" required></textarea>
+    <input type="text" name="website" id="mw" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+    <div class="mcap" id="mcap"></div>
+    <div class="mrow"><button class="btn" type="submit" id="msend">send</button><span id="mstatus" role="status"></span></div>
+  </form>
 </div></section>
 </main>
 
 <footer>sunnybasin · updated 2026 · <a href="disclaimer.html">disclaimer</a></footer>
-
+<div id="lb" role="dialog" aria-modal="true" aria-label="Project details"><div class="box">
+  <button class="x" id="lbx" aria-label="Close">×</button>
+  <img id="lbi" alt=""><h3 id="lbt"></h3><p id="lbd"></p>
+  <div class="nv"><button class="btn s" id="lbp" aria-label="Previous">‹ prev</button><a class="btn" id="lbv" target="_blank" rel="noopener">visit</a><button class="btn s" id="lbn" aria-label="Next">next ›</button></div>
+</div></div>
+<script>
+/* protogen click: kept here so it works even if script.js is old or cached */
+(function(){var b=document.getElementById('proto'),i=document.getElementById('protoimg'),s=document.getElementById('sfx'),idle=i.getAttribute('src'),t;
+b.onclick=function(){i.src='assets/11-9c727604.png';try{s.currentTime=0;var p=s.play();if(p&&p.catch)p.catch(function(){})}catch(e){}
+document.body.classList.remove('shaking');void document.body.offsetWidth;document.body.classList.add('shaking');
+clearTimeout(t);t=setTimeout(function(){i.src=idle;document.body.classList.remove('shaking')},900)}})();
+</script>
 <div id="toast" role="status"></div>
 <button id="top" aria-label="Back to top">↑</button>
-<script src="songs.js?v=7"></script>
-<script src="chips.js?v=7"></script>
-<script src="script.js?v=8"></script>
-<script src="interactables.js?v=9"></script>
+<script src="songs.js?v=10"></script>
+<script src="chips.js?v=10"></script>
+<script src="script.js?v=10"></script>
+<script src="interactables.js?v=10"></script>
 </body>
 </html>

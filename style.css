@@ -151,3 +151,16 @@ nav .links2.open{display:flex}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .rv{opacity:1;transform:none}}
 
 .logo-img{width:30px;height:30px;object-fit:contain;image-rendering:pixelated;-webkit-text-stroke:0;text-shadow:none;flex-shrink:0}
+
+.slist{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;font-size:18px;color:var(--body)}
+.slist li{display:flex;align-items:flex-start;gap:14px}
+.slist li::before{content:"";width:9px;height:9px;background:var(--o);flex-shrink:0;box-shadow:2px 2px 0 var(--ink);margin-top:.5em}
+.slist .sb{flex:1;min-width:0;max-width:380px}
+.slist .sb a{color:var(--muted);font-size:14px;margin-left:8px}
+.prow{display:flex;align-items:center;gap:10px;margin-top:4px}
+.slist .bar{flex:1;height:8px;margin:0}
+.sp{flex-shrink:0;width:26px;height:26px;border:2px solid var(--ink);background:var(--y);color:#1c1707;padding:0;font-size:10px;line-height:1}
+.sp:hover{background:var(--yd)}
+.slist li.play::before{background:var(--yd)}
+.mcap{margin-top:14px}
+.mcap label{margin-top:0}
