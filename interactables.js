@@ -22,7 +22,7 @@ var INTERACT = {
     /* captcha: paste your Google reCAPTCHA v2 ("I'm not a robot" checkbox) SITE key here.
        also paste its SECRET key in your Formspree form settings (CAPTCHA > Custom reCAPTCHA) so Formspree checks it for real.
        leave this blank to use a simple "what is a + b?" check instead. */
-    recaptchaSiteKey: "",
+    recaptchaSiteKey: "6Lc-7wsuAAAAANWlPZVFCZPdOza3KsbQeFJxZcOX",
     endpoint: "https://formspree.io/f/xoeekgnk",
     extra: { _subject: "New message from my website" },
     subject: "New message from my website"
