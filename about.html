@@ -72,7 +72,7 @@
   </div>
   <audio id="sfx" src="assets/09-4fc926e7.mp3" preload="none"></audio>
   <div class="tabs" id="tabs" role="tablist"></div>
-  <div class="grid" id="grid"><p class="empty">loading projects…</p></div>
+  <div class="grid" id="grid" data-limit="4"><p class="empty">loading projects…</p></div>
   <form class="box" id="edit">
     <h3 class="px" style="margin:0">add a project</h3>
     <label for="pt">title</label><input type="text" id="pt" required>
@@ -85,14 +85,9 @@
     <button class="btn" type="submit">add project</button><button class="btn s" type="button" id="dl">download projects.json</button>
     <p style="font-size:13px;color:var(--muted)">edits stay in this browser. download the file and replace projects.json on the site to publish.</p>
   </form>
-</div></section>
 
-<section id="more-projects"><div class="wrap">
-  <h2 class="rv" id="mp-h">About these projects</h2>
-  <div class="more-p rv" id="mp-text"></div>
-  <div class="topics" id="mp-links"></div>
+  <p style="margin:34px 0 0;display:flex;gap:12px;flex-wrap:wrap"><a class="nav-link" href="projects.html">all projects &rarr;</a></p>
 </div></section>
-
 <section id="contact"><div class="wrap contact">
   <div class="rv">
     <h2>Say hi</h2>
@@ -106,27 +101,8 @@
     </div>
   </div>
   <img class="rv" src="assets/10-1539eff3.png" alt="confused pixel character" id="conf">
-</div></section>
 
-<section id="more-contact"><div class="wrap">
-  <h2 class="rv" id="mc-h">What to message me about</h2>
-  <div class="more-p rv" id="mc-text"></div>
-  <ul class="list" id="mc-topics"></ul>
-</div></section>
-
-<section id="message"><div class="wrap">
-  <h2 class="rv">Send me a message</h2>
-  <form class="box mform rv" id="mform" novalidate>
-    <label for="mn">name (optional)</label>
-    <input id="mn" name="name" type="text" maxlength="60" autocomplete="name">
-    <label for="me">your email (optional, only if you want a reply)</label>
-    <input id="me" name="email" type="email" maxlength="120" autocomplete="email">
-    <label for="mm">message</label>
-    <textarea id="mm" name="message" rows="6" maxlength="2000" required></textarea>
-    <input type="text" name="website" id="mw" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
-    <div class="mcap" id="mcap"></div>
-    <div class="mrow"><button class="btn" type="submit" id="msend">send</button><span id="mstatus" role="status"></span></div>
-  </form>
+  <p style="margin:34px 0 0;display:flex;gap:12px;flex-wrap:wrap"><a class="nav-link" href="contact.html#message">send me a message &rarr;</a><a class="nav-link" href="contact.html">more ways to reach me &rarr;</a></p>
 </div></section>
 </main>
 
