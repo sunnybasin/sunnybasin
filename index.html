@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon1.ico" type="image/x-icon">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body data-page="home">
 <canvas id="dots"></canvas>
@@ -57,6 +57,8 @@
     <p id="chipnote">tap a chip to see more.</p>
     </div>
   </div>
+
+  <p style="margin:34px 0 0"><a class="nav-link" href="about.html">more about me &rarr;</a></p>
 </div></section>
 
 <section id="projects"><div class="wrap">
@@ -67,7 +69,7 @@
   </div>
   <audio id="sfx" src="assets/09-4fc926e7.mp3" preload="none"></audio>
   <div class="tabs" id="tabs" role="tablist"></div>
-  <div class="grid" id="grid"><p class="empty">loading projects…</p></div>
+  <div class="grid" id="grid" data-limit="4"><p class="empty">loading projects…</p></div>
   <form class="box" id="edit">
     <h3 class="px" style="margin:0">add a project</h3>
     <label for="pt">title</label><input type="text" id="pt" required>
@@ -80,6 +82,8 @@
     <button class="btn" type="submit">add project</button><button class="btn s" type="button" id="dl">download projects.json</button>
     <p style="font-size:13px;color:var(--muted)">edits stay in this browser. download the file and replace projects.json on the site to publish.</p>
   </form>
+
+  <p style="margin:34px 0 0"><a class="nav-link" href="projects.html">all projects &rarr;</a></p>
 </div></section>
 
 <section id="contact"><div class="wrap contact">
@@ -95,6 +99,8 @@
     </div>
   </div>
   <img class="rv" src="assets/10-1539eff3.png" alt="confused pixel character" id="conf">
+
+  <p style="margin:34px 0 0"><a class="nav-link" href="contact.html">more ways to reach me &rarr;</a></p>
 </div></section>
 
 <section id="message"><div class="wrap">
@@ -128,9 +134,9 @@ clearTimeout(t);t=setTimeout(function(){i.src=idle;document.body.classList.remov
 </script>
 <div id="toast" role="status"></div>
 <button id="top" aria-label="Back to top">↑</button>
-<script src="songs.js?v=10"></script>
-<script src="chips.js?v=10"></script>
-<script src="script.js?v=10"></script>
-<script src="interactables.js?v=10"></script>
+<script src="songs.js?v=11"></script>
+<script src="chips.js?v=11"></script>
+<script src="script.js?v=11"></script>
+<script src="interactables.js?v=11"></script>
 </body>
 </html>

@@ -116,7 +116,8 @@ function render(){
   var tabs=$('#tabs');tabs.innerHTML='';
   [['all','all'],['current','working on now'],['past','past']].forEach(function(t){var n=P.filter(function(p){return t[0]==='all'||(p.status==='past'?'past':'current')===t[0]}).length,b=document.createElement('button');
     b.className='chip'+(filter===t[0]?' on':'');b.setAttribute('role','tab');b.setAttribute('aria-selected',filter===t[0]);b.textContent=t[1]+' ('+n+')';b.onclick=function(){filter=t[0];render()};tabs.appendChild(b)});
-  shown=[];P.forEach(function(p,i){if(filter==='all'||(p.status==='past'?'past':'current')===filter)shown.push(i)});
+  var lim=+$('#grid').dataset.limit||0;if(lim){filter='current';tabs.style.display='none'}
+  shown=[];P.forEach(function(p,i){if((filter==='all'||(p.status==='past'?'past':'current')===filter)&&(!lim||shown.length<lim))shown.push(i)});
   var g=$('#grid');
   if(!P.length){g.innerHTML='<p class="empty">couldn\'t load projects.json. open the live site or run a local server.</p>';return}
   g.innerHTML=shown.length?shown.map(function(i,k){var p=P[i];
