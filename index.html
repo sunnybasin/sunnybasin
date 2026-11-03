@@ -17,7 +17,7 @@
   <div class="wrap">
     <a class="logo" href="index.html"><img class="logo-img" src="assets/02-53de2ebc.png" alt="">sunnybasin</a>
     <div class="links2" id="menu" style="display:contents">
-      <a class="l" href="about.html" data-p="about">about</a><a class="l" href="projects.html" data-p="projects">projects</a><a class="l" href="contact.html" data-p="contact">contact</a>
+      <a class="l on" href="index.html" data-p="home">home</a><a class="l" href="about.html" data-p="about">about</a><a class="l" href="projects.html" data-p="projects">projects</a><a class="l" href="contact.html" data-p="contact">contact</a>
     </div>
     <button class="tbtn" id="theme" aria-label="Toggle dark mode">☾</button>
     <button class="tbtn" id="burger" aria-label="Menu">≡</button>
@@ -48,13 +48,9 @@
         <li>tinkering a lot <img src="assets/07-96f7d783.png" alt="" style="width:40px;image-rendering:pixelated;vertical-align:middle"></li>
         <li>always building something</li>
       </ul>
-      <h3 class="sub-h" id="music" style="margin:34px 0 0;font-size:20px">Favourite songs</h3>
-      <ul class="slist" id="songs"></ul>
     </div>
     <div class="side">
     <figure class="box photo" style="margin:0"><img src="assets/06-e08f5042.jpg" alt="me wearing a respirator mask"><small>(me btw)</small></figure>
-    <div class="chips" id="chips" role="group" aria-label="Things I do (tap one)"></div>
-    <p id="chipnote">tap a chip to see more.</p>
     </div>
   </div>
 
@@ -100,22 +96,7 @@
   </div>
   <img class="rv" src="assets/10-1539eff3.png" alt="confused pixel character" id="conf">
 
-  <p style="margin:34px 0 0"><a class="nav-link" href="contact.html">more ways to reach me &rarr;</a></p>
-</div></section>
-
-<section id="message"><div class="wrap">
-  <h2 class="rv">Send me a message</h2>
-  <form class="box mform rv" id="mform" novalidate>
-    <label for="mn">name (optional)</label>
-    <input id="mn" name="name" type="text" maxlength="60" autocomplete="name">
-    <label for="me">your email (optional, only if you want a reply)</label>
-    <input id="me" name="email" type="email" maxlength="120" autocomplete="email">
-    <label for="mm">message</label>
-    <textarea id="mm" name="message" rows="6" maxlength="2000" required></textarea>
-    <input type="text" name="website" id="mw" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
-    <div class="mcap" id="mcap"></div>
-    <div class="mrow"><button class="btn" type="submit" id="msend">send</button><span id="mstatus" role="status"></span></div>
-  </form>
+  <p style="margin:34px 0 0;display:flex;gap:12px;flex-wrap:wrap"><a class="nav-link" href="contact.html#message">send me a message &rarr;</a><a class="nav-link" href="contact.html">more ways to reach me &rarr;</a></p>
 </div></section>
 </main>
 
