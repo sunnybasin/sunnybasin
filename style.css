@@ -172,3 +172,11 @@ nav .links2.open{display:flex}
 .topic p{margin:0;font-size:15px;color:var(--body);flex:1}
 .topic a{font-size:14px;font-weight:700;color:var(--yd);text-decoration:none;border-bottom:1px solid var(--yd);width:max-content}
 .topic a:hover{color:var(--o);border-color:var(--o)}
+
+.lbtn{position:relative;display:inline-flex;align-items:center;gap:9px;padding:10px 16px;font:700 14px "Pixelify Sans",monospace;color:var(--text);background:var(--alt);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);text-decoration:none;transition:transform .1s,box-shadow .1s,background .15s}
+.lbtn svg{width:20px;height:20px;flex-shrink:0}.lbtn .emo{font-size:18px;line-height:1}
+.lbtn:hover,.lbtn:focus-visible{background:var(--y);color:#1c1707;transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.lbtn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.lbtn:hover .tip,.lbtn:focus-visible .tip{opacity:1;visibility:visible}
+.lbtn .tip{font-weight:400;font-family:"Space Grotesk",sans-serif;white-space:normal}
+#linkrow{flex-wrap:wrap;gap:16px}

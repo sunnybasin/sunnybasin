@@ -14,6 +14,15 @@ var INTERACT = {
   copyText: "sunnybasin",
   /* easter egg: click the confused character this many times (or type the konami code) to open the game */
   secret: { page: "game.html", clicks: 5 },
+  /* the link buttons on the home and contact pages. add, remove or reorder them here.
+       label: the text on the button      url: where it goes
+       icon:  youtube, bandcamp, github, discord, link (or type any emoji, like "🎵")
+       tip / tipText: the small pop-up that shows when you hover (leave both "" for no pop-up) */
+  links: [
+    { label: "YouTube",  url: "https://www.youtube.com/@sunnybv3", icon: "youtube",  tip: "sunnyv3 on YouTube",  tipText: "making music for fun, classical/orchestral" },
+    { label: "Bandcamp", url: "https://sunnyv3.bandcamp.com/",     icon: "bandcamp", tip: "sunnyv3 on Bandcamp", tipText: "Lisbon, Portugal. making music for fun" },
+    { label: "GitHub",   url: "https://github.com/sunnybasin",     icon: "github",   tip: "sunnybasin on GitHub", tipText: "the protogen os lite code and more" }
+  ],
   /* the message form on the contact page. your email is NOT stored here: it lives in your form service's dashboard.
      1) make a free account at formspree.io (or web3forms.com) using your real email
      2) formspree: paste your form link here, like "https://formspree.io/f/abcdwxyz"
@@ -97,6 +106,20 @@ if($('#songs')){
     bar.onclick=function(e){var r=bar.getBoundingClientRect();if(a.duration)a.currentTime=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*a.duration};
     bar.onkeydown=function(e){if(e.key==='ArrowRight')a.currentTime+=5;if(e.key==='ArrowLeft')a.currentTime-=5};
     $('#songs').appendChild(el)})}
+
+/* the link buttons (settings: INTERACT.links) */
+if($('#linkrow')){
+  var ICONS={
+    youtube:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z" fill="currentColor" stroke="none"/></svg>',
+    bandcamp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>',
+    github:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 008.4 22.9c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/></svg>',
+    discord:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 01-11.5 7.2L4 20l1-4.2A8 8 0 1121 12z"/></svg>',
+    link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg>'};
+  INTERACT.links.forEach(function(l){
+    var a=document.createElement('a');a.className='lbtn';a.href=l.url;a.target='_blank';a.rel='noopener';
+    var ic=l.icon?(ICONS[l.icon]||'<span class="emo">'+esc(l.icon)+'</span>'):ICONS.link;
+    a.innerHTML=ic+'<span class="lt">'+esc(l.label)+'</span>'+((l.tip||l.tipText)?'<span class="tip"><b>'+esc(l.tip)+'</b>'+esc(l.tipText)+'</span>':'');
+    $('#linkrow').appendChild(a)})}
 
 /* contact page: copy handle */
 if($('#copy'))$('#copy').onclick=function(){var t=INTERACT.copyText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast('copied "'+t+'" to clipboard')},function(){toast('discord: '+t)})};
