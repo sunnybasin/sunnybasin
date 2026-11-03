@@ -1,5 +1,5 @@
 /* ===== "MORE INFO" PAGES =====
-   The pages in the top bar (about, projects, contact) show extra detail beyond the home page.
+   The about page shows extra detail beyond the home page.
    Edit the text below to add more. Keep the quotes and commas the same.
    To add a topic, copy one { ... } block and add a comma after the one before it. */
 var MORE = {
@@ -20,29 +20,6 @@ var MORE = {
       { title: "modeler",   text: "3D models for games and community projects." },
       { title: "runner",    text: "cross country. i'm not that fast, but i love it and i never skip a run." }
     ]
-  },
-  projects: {
-    heading: "About these projects",
-    paragraphs: [
-      "these are the things i'm working on and have worked on. the ones i'm working on now come first, and the finished ones are under past projects. click a picture to see it bigger.",
-      "most of what i build is for fun, and a lot of it is software and electronics for my protogen build."
-    ],
-    links: [
-      { title: "protogen os lite", text: "the code for the protogen build.", link: { label: "open on github", url: "https://github.com/sunnybasin/protogen-os-lite/tree/main" } },
-      { title: "my music", text: "classical and orchestral pieces i make for fun.", link: { label: "youtube", url: "https://www.youtube.com/@sunnybv3" } }
-    ]
-  },
-  contact: {
-    heading: "What to message me about",
-    paragraphs: [
-      "the quickest way to reach me is discord (@sunnybasin) or the message form below. i read everything, but i might take a bit to reply."
-    ],
-    topics: [
-      "music, collabs, and questions about my pieces",
-      "game projects and community work",
-      "questions about the protogen build or the open source code",
-      "or just saying hi"
-    ]
   }
 };
 
@@ -56,7 +33,4 @@ var MORE = {
     if(t.link){var a=el('a','',t.link.label+' →');a.href=t.link.url;a.target='_blank';a.rel='noopener';c.appendChild(a)}box.appendChild(c)})}
   function head(id,t){var h=$(id);if(h&&t)h.textContent=t}
   head('#ma-h',MORE.about.heading);paras($('#ma-text'),MORE.about.paragraphs);cards($('#topics'),MORE.about.topics);
-  head('#mp-h',MORE.projects.heading);paras($('#mp-text'),MORE.projects.paragraphs);cards($('#mp-links'),MORE.projects.links);
-  head('#mc-h',MORE.contact.heading);paras($('#mc-text'),MORE.contact.paragraphs);
-  var ul=$('#mc-topics');if(ul)MORE.contact.topics.forEach(function(s){ul.appendChild(el('li','',s))});
 })();
