@@ -9,7 +9,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon1.ico" type="image/x-icon">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=15">
+<style>
+/* button styles live here too, so these buttons work even if style.css is an older copy */
+.nav-link{display:inline-block;font:700 14px "Pixelify Sans",monospace;color:#1c1707;background:#ffcf49;border:2px solid #1c1707;padding:11px 18px;text-decoration:none;box-shadow:4px 4px 0 #1c1707;transition:transform .1s,box-shadow .1s,background .15s}
+.nav-link:hover,.nav-link:focus-visible{background:#f0b400;transform:translate(-2px,-2px);box-shadow:6px 6px 0 #1c1707}
+.nav-link:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #1c1707}
+.lbtn{position:relative;display:inline-flex;align-items:center;gap:9px;padding:10px 16px;font:700 14px "Pixelify Sans",monospace;color:inherit;background:var(--alt,#fff8dc);border:2px solid #1c1707;box-shadow:4px 4px 0 #1c1707;text-decoration:none;transition:transform .1s,box-shadow .1s,background .15s}
+.lbtn svg{width:20px;height:20px;flex-shrink:0}
+.lbtn:hover,.lbtn:focus-visible{background:#ffcf49;color:#1c1707;transform:translate(-2px,-2px);box-shadow:6px 6px 0 #1c1707}
+#linkrow{display:flex;flex-wrap:wrap;gap:16px}
+</style>
 </head>
 <body data-page="home">
 <canvas id="dots"></canvas>
