@@ -180,3 +180,7 @@ nav .links2.open{display:flex}
 .lbtn:hover .tip,.lbtn:focus-visible .tip{opacity:1;visibility:visible}
 .lbtn .tip{font-weight:400;font-family:"Space Grotesk",sans-serif;white-space:normal}
 #linkrow{flex-wrap:wrap;gap:16px}
+
+.nav-link{display:inline-block;font:700 14px "Pixelify Sans",monospace;color:#1c1707;background:var(--y);border:2px solid var(--ink);padding:11px 18px;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .1s,box-shadow .1s,background .15s}
+.nav-link:hover,.nav-link:focus-visible{background:var(--yd);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.nav-link:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
